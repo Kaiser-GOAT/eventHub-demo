@@ -6,12 +6,12 @@ const eventHub = {
   },
   off: (name, fn) => {
     if (!eventHub.map[name]) return
-    let index = eventHub.map[name].indexOf(fn)
+    const index = eventHub.map[name].indexOf(fn)
     if (index < 0) return
     eventHub.map[name].splice(index, 1)
   },
   emit: (name, data) => {
-    if (!eventHub.map[name] && eventHub.map[name].length === 0) return
+    if (!eventHub.map[name]) return
     eventHub.map[name].forEach((fn) => fn.call(undefined, data))
   },
 }
